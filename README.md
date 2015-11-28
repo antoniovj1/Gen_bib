@@ -3,34 +3,23 @@ Genera un archivo con la bibliografía a partir de un archivo con urls.
 
 El script recibe un archivo con urls y las etiquetas con las que serán citadas en el archivo .tex:
 
-*Ejemplo:* 
+*Ejemplo archivo entrada:* 
 
-cron;http://linux.die.net/man/8/cron
-
+cron;http://linux.die.net/man/8/cron<br />
 ls;http://man7.org/linux/man-pages/man1/ls.1.html
 
 *Archivo generado:*
 
-@misc{cron,
+@misc{cron,<br />
+	author = {},<br />
+	title = {cron(8): daemon to execute scheduled commands - Linux man page},<br />
+	year = {(Accedido el 28/11/2015)}, <br />
+	howpublished ="\url{http://linux.die.net/man/8/cron}"<br />
+} <br />
 
-	author = {},
-	
-	title = {cron(8): daemon to execute scheduled commands - Linux man page},
-	
-	year = {(Accedido el 28/11/2015)}, 
-	
-	howpublished ="\url{http://linux.die.net/man/8/cron}"
-	
-} 
-
-@misc{ls,
-
-	author = {},
-	
-	title = {ls(1) - Linux manual page},
-	
-	year = {(Accedido el 28/11/2015)}, 
-	
-	howpublished ="\url{http://man7.org/linux/man-pages/man1/ls.1.html}"
-	
-} 
+@misc{ls,<br />
+	author = {},<br />
+	title = {ls(1) - Linux manual page},<br />
+	year = {(Accedido el 28/11/2015)}, <br />
+	howpublished ="\url{http://man7.org/linux/man-pages/man1/ls.1.html}"<br />
+} <br />

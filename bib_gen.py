@@ -4,7 +4,6 @@ import re
 import time
 import sys
 
-
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'}
 
 def getTitle(link):
@@ -26,7 +25,6 @@ def getURL(line,label):
     url = line[len(label)+1:-1]
     return url
 
-
 def genItem(line):
     label = getLabel(line)
     url = getURL(line,label)
@@ -35,7 +33,6 @@ def genItem(line):
     item = "@misc{" + label + ",\n\tauthor = {},\n\ttitle = {" + title +"},\n\tyear = {(Accedido el "\
     + date + ")}, \n\thowpublished =\"\\url{"+url+"}\"\n} \n\n"
     return item
-
 
 if(len(sys.argv) == 3):
     urls = open(sys.argv[1],"r")

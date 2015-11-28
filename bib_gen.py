@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 import urllib2
 import re
 import time
@@ -25,12 +26,31 @@ def getURL(line,label):
     url = line[len(label)+1:-1]
     return url
 
+#Añade el el caracter de escape \ delante de los caracteres especiales.
+def fixURL(url):
+    url.replace("#","\#")
+    url.replace("_","\_")
+    url.replace("&","\&")
+    return url
+
 def genItem(line):
     label = getLabel(line)
     url = getURL(line,label)
     date = time.strftime("%d/%m/%Y")
     title = getTitle(url)
+    url = fixURL(url)
+
     item = "@misc{" + label + ",\n\tauthor = {},\n\ttitle = {" + title +"},\n\tyear = {(Accedido el "\
+    + date + ")}, \n\thowpublished =\"\\url{"+url+"}\"\n} \n\n"
+    return item
+
+def genItem2(line):
+    label = getLabel(line)
+    url = getURL(line,label)
+    date = time.strftime("%d/%m/%Y")
+    url = fixURL(url)
+
+    item = "@misc{" + label + ",\n\tauthor = {},\n\ttitle = {},\n\tyear = {(Accedido el "\
     + date + ")}, \n\thowpublished =\"\\url{"+url+"}\"\n} \n\n"
     return item
 
@@ -39,7 +59,12 @@ if(len(sys.argv) == 3):
     bib = open(sys.argv[2],"a")
 
     for line in urls:
-        bib.write(genItem(line))
+        try:
+            bib.write(genItem(line))
+        except Exception:
+            sys.exc_clear()
+            bib.write(genItem2(line))
+            print ("Linea -> " + line + " generada sin titulo" )
 
     urls.close()
     bib.close()

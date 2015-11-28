@@ -7,7 +7,7 @@ import sys
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'}
 
-#Descarga el html y obtiene el titulo haciendo uso de re
+#Descarga el html y obtiene el título haciendo uso de re
 def getTitle(link):
   req = urllib2.Request(link, headers=hdr)
   html = urllib2.urlopen(req)

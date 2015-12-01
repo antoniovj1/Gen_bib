@@ -5,6 +5,11 @@ Genera un archivo con la bibliografía para **LaTex** a partir de un archivo con
 
 El script recibe un archivo con URLs y las etiquetas con las que serán citadas en el archivo .tex:
 
+**Uso:**
+```
+$ ./gen_bib.py archivo_entrada archivo_salida
+```
+
 **Ejemplo archivo entrada:** 
 ```
 cron;http://linux.die.net/man/8/cron

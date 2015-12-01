@@ -30,9 +30,9 @@ def getURL(line,label):
 
 #Añade el el carácter de escape \ delante de los caracteres especiales.
 def fixURL(url):
-    url.replace("#","\#")
-    url.replace("_","\_")
-    url.replace("&","\&")
+    url = url.replace("#","\#")
+    url = url.replace("_","\_")
+    url = url.replace("&","\&")
     return url
 
 #Genera una entrada completa de la bibliografía a partir de una linea del archivo_urls
@@ -40,20 +40,20 @@ def genItem(line):
     label = getLabel(line)
     url = getURL(line,label)
     date = time.strftime("%d/%m/%Y")
-    url = fixURL(url)
+    urlf = fixURL(url)
 
     try:
         title = getTitle(url)
 
         item = "@misc{" + label + ",\n\tauthor = {},\n\ttitle = {" + title +"},\n\tyear = {(Accedido el "\
-        + date + ")}, \n\thowpublished =\"\\url{"+url+"}\"\n} \n\n"
+        + date + ")}, \n\thowpublished =\"\\url{"+urlf+"}\"\n} \n\n"
     except Exception:
         sys.exc_clear()
         print ("Linea -> " + line + " generada sin título" )
 
         #En caso de no poder obtener el html, genera una entrada que NO incluye el título
         item = "@misc{" + label + ",\n\tauthor = {},\n\ttitle = {},\n\tyear = {(Accedido el "\
-        + date + ")}, \n\thowpublished =\"\\url{"+url+"}\"\n} \n\n"
+        + date + ")}, \n\thowpublished =\"\\url{"+urlf+"}\"\n} \n\n"
 
     return item
 

@@ -29,22 +29,23 @@ def getURL(line,label):
     return url
 
 #Añade el el carácter de escape \ delante de los caracteres especiales.
-def fixURL(url):
-    url = url.replace("#","\#")
-    url = url.replace("_","\_")
-    url = url.replace("&","\&")
-    return url
+def fix(fixed):
+    fixed = fixed.replace("#","\#")
+    fixed = fixed.replace("_","\_")
+    fixed = fixed.replace("&","\&")
+    return fixed
 
 #Genera una entrada completa de la bibliografía a partir de una linea del archivo_urls
 def genItem(line):
     label = getLabel(line)
     url = getURL(line,label)
     date = time.strftime("%d/%m/%Y")
-    urlf = fixURL(url)
+    urlf = fix(url)
 
     try:
         title = getTitle(url)
-
+        title = fix(title)
+        
         item = "@misc{" + label + ",\n\tauthor = {},\n\ttitle = {" + title +"},\n\tyear = {(Accedido el "\
         + date + ")}, \n\thowpublished =\"\\url{"+urlf+"}\"\n} \n\n"
     except Exception:

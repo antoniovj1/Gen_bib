@@ -68,4 +68,4 @@ if(len(sys.argv) == 3):
     bib.close()
 
 else:
-    print ("Uso: ./bib_gen.py archivo_urls archivo_bib")
+    print ("Uso: ./gen_bib.py archivo_urls archivo_bib")
